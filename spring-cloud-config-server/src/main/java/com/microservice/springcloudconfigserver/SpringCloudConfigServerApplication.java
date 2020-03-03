@@ -4,7 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.config.server.EnableConfigServer;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import brave.sampler.Sampler;
 
 @Configuration
 @EnableAutoConfiguration
@@ -16,4 +19,8 @@ public class SpringCloudConfigServerApplication {
 		SpringApplication.run(SpringCloudConfigServerApplication.class, args);
 	}
 
+	@Bean
+	public Sampler defaultSampler() {
+		return Sampler.ALWAYS_SAMPLE;
+	}
 }
